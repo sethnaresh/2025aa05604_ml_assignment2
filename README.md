@@ -239,3 +239,24 @@ project-folder/
 │   │-- evaluate.py
 │   │-- utils.py
 ```
+
+## ⚠️ Git LFS Notice
+
+This repository uses **Git Large File Storage (LFS)** to handle large model files and datasets. If you clone this repository, ensure you have Git LFS installed:
+
+```bash
+git lfs install
+```
+
+Then clone the repository normally:
+
+```bash
+git clone https://github.com/sethnaresh/2025aa05604_ml_assignment2.git
+cd 2025aa05604_ml_assignment2
+```
+
+Git LFS will automatically fetch large files. Without LFS installed, large files will appear as pointers instead of actual files.
+
+**Files tracked with LFS:**
+- `*.pkl` (Model files)
+- `*.csv` (Datasets)
