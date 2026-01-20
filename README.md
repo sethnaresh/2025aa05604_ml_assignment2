@@ -105,7 +105,7 @@ pip install -r requirements.txt
 Train all models on your full dataset and save them:
 
 ```bash
-python train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churned
+python model/train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churned
 ```
 
 **Arguments:**
@@ -145,7 +145,6 @@ The app will:
 
 ```
 ├── app.py                          # Streamlit web app (loads pre-trained models)
-├── train_offline.py                # Training script (trains and saves models)
 ├── requirements.txt                # Python dependencies
 ├── README.md                       # This file
 │
@@ -153,6 +152,7 @@ The app will:
 │   └── ecommerce_customer_churn_dataset.csv  # Original training dataset
 │
 ├── model/
+│   ├── train_offline.py            # Training script (trains and saves models)
 │   ├── train_models.py             # Model training logic
 │   ├── evaluate.py                 # Evaluation metrics & visualizations
 │   ├── utils.py                    # Data preprocessing utilities
@@ -172,13 +172,13 @@ The app will:
 
 ## File Descriptions
 
-| File                    | Purpose                                                        |
-| ----------------------- | -------------------------------------------------------------- |
-| `app.py`                | Main Streamlit app - loads models and accepts test data        |
-| `train_offline.py`      | Standalone script to train and save all models                 |
-| `model/train_models.py` | Core training logic for all 6 models                           |
-| `model/evaluate.py`     | Evaluation metrics (Accuracy, AUC, Precision, Recall, F1, MCC) |
-| `model/utils.py`        | Data preprocessing (StandardScaler, OneHotEncoder)             |
+| File                      | Purpose                                                        |
+| ------------------------- | -------------------------------------------------------------- |
+| `app.py`                  | Main Streamlit app - loads models and accepts test data        |
+| `model/train_offline.py`  | Standalone script to train and save all models                 |
+| `model/train_models.py`   | Core training logic for all 6 models                           |
+| `model/evaluate.py`       | Evaluation metrics (Accuracy, AUC, Precision, Recall, F1, MCC) |
+| `model/utils.py`          | Data preprocessing (StandardScaler, OneHotEncoder)             |
 
 ---
 
