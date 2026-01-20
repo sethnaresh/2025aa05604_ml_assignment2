@@ -41,7 +41,6 @@ pip-delete-this-directory.txt
 *.ipynb
 
 # Data
-data/
 *.csv
 *.xlsx
 *.xls
