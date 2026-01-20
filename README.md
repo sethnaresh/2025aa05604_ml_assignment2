@@ -83,7 +83,7 @@ This is a comprehensive Customer Engagement and Churn Analytics Dataset containi
 | Random Forest       |  0.9133  | 0.9247 |  0.9192   | 0.7675 |  0.8365  | 0.7840 |
 | XGBoost             |  0.9239  | 0.9297 |  0.9291   | 0.7976 |  0.8583  | 0.8111 |
 
-### Model Observations & Analysis
+### Model Observations
 
 | Model               | Observations                                                                                                                                                                                       |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -143,7 +143,6 @@ The app will:
 
 ## Project Structure
 
-```
 ├── app.py                          # Streamlit web app (loads pre-trained models)
 ├── requirements.txt                # Python dependencies
 ├── README.md                       # This file
@@ -166,7 +165,6 @@ The app will:
 │       ├── xgb_model.pkl
 │       ├── preprocessor.pkl
 │       └── metadata.pkl
-```
 
 ---
 
@@ -179,73 +177,6 @@ The app will:
 | `model/train_models.py`   | Core training logic for all 6 models                           |
 | `model/evaluate.py`       | Evaluation metrics (Accuracy, AUC, Precision, Recall, F1, MCC) |
 | `model/utils.py`          | Data preprocessing (StandardScaler, OneHotEncoder)             |
-
----
-
-## Workflow
-
-### Training Phase (One-time)
-
-```
-Full Training Data
-       ↓
-train_offline.py (preprocesses & trains all 6 models)
-       ↓
-Saves: 6 models + preprocessor + metadata
-       ↓
-Pickled files in model/saved/
-```
-
-### Evaluation Phase (Repeated)
-
-```
-Test Data Upload (CSV)
-       ↓
-app.py (loads pre-trained models)
-       ↓
-Transform test data using saved preprocessor
-       ↓
-Evaluate & Display Results
-       ↓
-Show metrics, confusion matrix, classification report
-```
-
----
-
-## Models Used
-
-1. **Logistic Regression** - Linear baseline model
-2. **Decision Tree** - Tree-based model
-3. **k-Nearest Neighbors (kNN)** - Instance-based learning
-4. **Naive Bayes** - Probabilistic classifier
-5. **Random Forest** - Ensemble (n_estimators=300)
-6. **XGBoost** - Gradient boosting ensemble (n_estimators=400)
-
----
-
-## Evaluation Metrics
-
-- **Accuracy**: Proportion of correct predictions
-- **AUC Score**: Area under ROC curve (multi-class: One-vs-Rest)
-- **Precision**: True positives / All predicted positives
-- **Recall**: True positives / All actual positives
-- **F1 Score**: Harmonic mean of Precision and Recall
-- **MCC**: Matthews Correlation Coefficient (balanced metric)
-
-4. Deploy
-
-## Project structure
-
-```
-project-folder/
-│-- app.py
-│-- requirements.txt
-│-- README.md
-│-- model/
-│   │-- train_models.py
-│   │-- evaluate.py
-│   │-- utils.py
-```
 
 ## ⚠️ Git LFS Notice
 
