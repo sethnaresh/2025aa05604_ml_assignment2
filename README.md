@@ -97,14 +97,134 @@ This is a comprehensive Customer Engagement and Churn Analytics Dataset containi
 
 ```bash
 pip install -r requirements.txt
+```
+
+### Step 2: Train Models (One-time Setup)
+
+Train all models on your full dataset and save them:
+
+```bash
+python train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churned
+```
+
+**Arguments:**
+- `--data` (required): Path to your training CSV dataset
+- `--target` (required): Target column name in the dataset
+- `--output` (optional): Output directory for saved models (default: `model/saved`)
+
+**Output:**
+- `model/saved/logreg_model.pkl` - Logistic Regression model
+- `model/saved/dt_model.pkl` - Decision Tree model
+- `model/saved/knn_model.pkl` - KNN model
+- `model/saved/nb_model.pkl` - Naive Bayes model
+- `model/saved/rf_model.pkl` - Random Forest model
+- `model/saved/xgb_model.pkl` - XGBoost model
+- `model/saved/preprocessor.pkl` - Feature preprocessor
+- `model/saved/metadata.pkl` - Training metadata
+
+### Step 3: Run the Streamlit App
+
+```bash
 streamlit run app.py
 ```
 
-## Deployment (Streamlit Community Cloud)
+The app will:
+1. Load pre-trained models from `model/saved/`
+2. Accept a test CSV file (same features as training data)
+3. Display evaluation metrics across all models
+4. Show detailed analysis for selected model
+5. Allow single-row predictions
 
-1. Push this project to GitHub
-2. Go to Streamlit Cloud → New App
-3. Select repo / branch / `app.py`
+---
+
+## Project Structure
+
+```
+├── app.py                          # Streamlit web app (loads pre-trained models)
+├── train_offline.py                # Training script (trains and saves models)
+├── requirements.txt                # Python dependencies
+├── README.md                       # This file
+│
+├── data/
+│   └── ecommerce_customer_churn_dataset.csv  # Original training dataset
+│
+├── model/
+│   ├── train_models.py             # Model training logic
+│   ├── evaluate.py                 # Evaluation metrics & visualizations
+│   ├── utils.py                    # Data preprocessing utilities
+│   │
+│   └── saved/                      # Pre-trained models (created after training)
+│       ├── logreg_model.pkl
+│       ├── dt_model.pkl
+│       ├── knn_model.pkl
+│       ├── nb_model.pkl
+│       ├── rf_model.pkl
+│       ├── xgb_model.pkl
+│       ├── preprocessor.pkl
+│       └── metadata.pkl
+```
+
+---
+
+## File Descriptions
+
+| File | Purpose |
+|------|---------|
+| `app.py` | Main Streamlit app - loads models and accepts test data |
+| `train_offline.py` | Standalone script to train and save all models |
+| `model/train_models.py` | Core training logic for all 6 models |
+| `model/evaluate.py` | Evaluation metrics (Accuracy, AUC, Precision, Recall, F1, MCC) |
+| `model/utils.py` | Data preprocessing (StandardScaler, OneHotEncoder) |
+
+---
+
+## Workflow
+
+### Training Phase (One-time)
+```
+Full Training Data
+       ↓
+train_offline.py (preprocesses & trains all 6 models)
+       ↓
+Saves: 6 models + preprocessor + metadata
+       ↓
+Pickled files in model/saved/
+```
+
+### Evaluation Phase (Repeated)
+```
+Test Data Upload (CSV)
+       ↓
+app.py (loads pre-trained models)
+       ↓
+Transform test data using saved preprocessor
+       ↓
+Evaluate & Display Results
+       ↓
+Show metrics, confusion matrix, classification report
+```
+
+---
+
+## Models Used
+
+1. **Logistic Regression** - Linear baseline model
+2. **Decision Tree** - Tree-based model
+3. **k-Nearest Neighbors (kNN)** - Instance-based learning
+4. **Naive Bayes** - Probabilistic classifier
+5. **Random Forest** - Ensemble (n_estimators=300)
+6. **XGBoost** - Gradient boosting ensemble (n_estimators=400)
+
+---
+
+## Evaluation Metrics
+
+- **Accuracy**: Proportion of correct predictions
+- **AUC Score**: Area under ROC curve (multi-class: One-vs-Rest)
+- **Precision**: True positives / All predicted positives
+- **Recall**: True positives / All actual positives
+- **F1 Score**: Harmonic mean of Precision and Recall
+- **MCC**: Matthews Correlation Coefficient (balanced metric)
 4. Deploy
 
 ## Project structure
