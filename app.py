@@ -98,7 +98,7 @@ def main():
     
     if error_msg:
         st.error(f"❌ {error_msg}")
-        st.info("**Setup Instructions:**\n\n1. Run training offline:\n```bash\npython train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churn\n```\n2. Then refresh this app")
+        st.info("**Setup Instructions:**\n\n1. Run training offline:\n```bash\npython train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churned\n```\n2. Then refresh this app")
         st.stop()
     
     if uploaded is None:
