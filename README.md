@@ -143,28 +143,31 @@ The app will:
 
 ## Project Structure
 
-├── app.py                          # Streamlit web app (loads pre-trained models)
-├── requirements.txt                # Python dependencies
-├── README.md                       # This file
+```
+app.py                          # Streamlit web app (loads pre-trained models)
+requirements.txt                # Python dependencies
+README.md                       # This file
+
+data/
+└── ecommerce_customer_churn_dataset.csv  # Original training dataset
+
+model/
+├── train_offline.py            # Training script (trains and saves models)
+├── train_models.py             # Model training logic
+├── evaluate.py                 # Evaluation metrics & visualizations
+├── utils.py                    # Data preprocessing utilities
+├── __pycache__/
 │
-├── data/
-│   └── ecommerce_customer_churn_dataset.csv  # Original training dataset
-│
-├── model/
-│   ├── train_offline.py            # Training script (trains and saves models)
-│   ├── train_models.py             # Model training logic
-│   ├── evaluate.py                 # Evaluation metrics & visualizations
-│   ├── utils.py                    # Data preprocessing utilities
-│   │
-│   └── saved/                      # Pre-trained models (created after training)
-│       ├── logreg_model.pkl
-│       ├── dt_model.pkl
-│       ├── knn_model.pkl
-│       ├── nb_model.pkl
-│       ├── rf_model.pkl
-│       ├── xgb_model.pkl
-│       ├── preprocessor.pkl
-│       └── metadata.pkl
+└── saved/                      # Pre-trained models (created after training)
+    ├── logreg_model.pkl
+    ├── dt_model.pkl
+    ├── knn_model.pkl
+    ├── nb_model.pkl
+    ├── rf_model.pkl
+    ├── xgb_model.pkl
+    ├── preprocessor.pkl
+    └── metadata.pkl
+```
 
 ---
 
