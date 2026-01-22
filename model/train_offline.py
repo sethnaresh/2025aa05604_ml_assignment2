@@ -3,7 +3,7 @@ Offline training script to train all models on the full dataset.
 Run this once to generate saved models and preprocessor.
 
 Usage:
-    python train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churn
+    python model/train_offline.py --data data/ecommerce_customer_churn_dataset.csv --target Churn
 """
 
 import argparse
